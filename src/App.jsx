@@ -222,8 +222,7 @@ export default function ClientOnboardingForm() {
   const [error, setError] = useState("");
 
   // Webhook URL - update this with your n8n webhook URL
-  const [webhookUrl, setWebhookUrl] = useState("");
-  const [showWebhookConfig, setShowWebhookConfig] = useState(false);
+  const webhookUrl = "https://w-h-d.app.n8n.cloud/webhook/client-onboard";
 
   // Step 1: Client Details
   const [clientName, setClientName] = useState("");
@@ -399,20 +398,7 @@ export default function ClientOnboardingForm() {
           <span style={{ fontWeight: 700, fontSize: "1.3rem", letterSpacing: "0.2em" }}>PULSE</span>
           <span style={{ color: "#444", fontSize: "0.75rem", marginLeft: 2, paddingLeft: 12, borderLeft: "1px solid #333" }}>Client Onboarding</span>
         </div>
-        <button
-          onClick={() => setShowWebhookConfig(!showWebhookConfig)}
-          style={{ background: "none", border: "1px solid #333", borderRadius: 6, color: "#888", padding: "6px 12px", fontSize: "0.75rem", cursor: "pointer" }}
-        >
-          {webhookUrl ? "Webhook Connected" : "Configure Webhook"}
-        </button>
       </div>
-
-      {showWebhookConfig && (
-        <div style={{ padding: "12px 24px", background: "#111", borderBottom: "1px solid #1a1a1a" }}>
-          <Label sub="Paste your n8n webhook URL here">Webhook URL</Label>
-          <Input value={webhookUrl} onChange={setWebhookUrl} placeholder="https://your-n8n.app.n8n.cloud/webhook/..." />
-        </div>
-      )}
 
       {/* Progress */}
       <div style={{ padding: "24px 24px 0", maxWidth: 720, margin: "0 auto" }}>
