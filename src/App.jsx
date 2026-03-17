@@ -40,11 +40,11 @@ function slugify(name) {
 
 function Label({ children, sub }) {
   return (
-    <label className="block mb-1">
+    <label className="block" style={{ marginBottom: 6 }}>
       <span style={{ color: "#e0e0e0", fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase" }}>
         {children}
       </span>
-      {sub && <span style={{ color: "#777", fontSize: "0.7rem", display: "block", marginTop: 2, textTransform: "none", letterSpacing: 0, fontWeight: 400 }}>{sub}</span>}
+      {sub && <span style={{ color: "#777", fontSize: "0.7rem", display: "block", marginTop: 3, textTransform: "none", letterSpacing: 0, fontWeight: 400 }}>{sub}</span>}
     </label>
   );
 }
@@ -66,9 +66,13 @@ function Input({ value, onChange, placeholder, type = "text", ...props }) {
         fontSize: "0.95rem",
         outline: "none",
         transition: "border-color 0.2s",
+        boxSizing: "border-box",
+        MozAppearance: "textfield",
+        WebkitAppearance: "none",
       }}
       onFocus={(e) => (e.target.style.borderColor = "#00e676")}
       onBlur={(e) => (e.target.style.borderColor = "#333")}
+      autoComplete="off"
       {...props}
     />
   );
@@ -139,7 +143,7 @@ function FieldRow({ children }) {
 
 function SectionHeader({ children }) {
   return (
-    <div style={{ borderBottom: "1px solid #2a2a2a", paddingBottom: 8, marginBottom: 20, marginTop: 28 }}>
+    <div style={{ borderBottom: "1px solid #2a2a2a", paddingBottom: 8, marginBottom: 24, marginTop: 32 }}>
       <h3 style={{ margin: 0, fontSize: "0.85rem", fontWeight: 700, color: "#00e676", letterSpacing: "0.08em", textTransform: "uppercase" }}>
         {children}
       </h3>
@@ -388,6 +392,7 @@ export default function ClientOnboardingForm() {
   return (
     <div style={{ minHeight: "100vh", background: "#0d0d0d", fontFamily: "'DM Sans', sans-serif", color: "#fff" }}>
       <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+      <style>{`input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; } input[type=number] { -moz-appearance: textfield; }`}</style>
 
       {/* Header */}
       <div style={{ borderBottom: "1px solid #1a1a1a", padding: "16px 24px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -449,7 +454,7 @@ export default function ClientOnboardingForm() {
             <h2 style={{ margin: "0 0 4px", fontWeight: 700, fontSize: "1.4rem" }}>Client Details</h2>
             <p style={{ color: "#666", margin: "0 0 28px", fontSize: "0.9rem" }}>Basic information about the client.</p>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
               <div>
                 <Label>Client Name</Label>
                 <Input value={clientName} onChange={setClientName} placeholder="e.g. SWAG Boxers" />
@@ -532,7 +537,7 @@ export default function ClientOnboardingForm() {
             </div>
 
             <SectionHeader>Analytics and Commerce</SectionHeader>
-            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
               <div>
                 <Label sub="From GA4 Admin > Property Settings">GA4 Property ID</Label>
                 <Input value={ga4PropertyId} onChange={setGa4PropertyId} placeholder="e.g. 269420684" />
@@ -546,7 +551,7 @@ export default function ClientOnboardingForm() {
             </div>
 
             <SectionHeader>Organic Social</SectionHeader>
-            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
               <div>
                 <Label sub="From Facebook Page > About > Page ID">Facebook Page ID</Label>
                 <Input value={facebookPageId} onChange={setFacebookPageId} placeholder="e.g. 179020012222696" />
@@ -570,7 +575,7 @@ export default function ClientOnboardingForm() {
             <p style={{ color: "#666", margin: "0 0 28px", fontSize: "0.9rem" }}>Monthly approved budgets and performance targets.</p>
 
             <SectionHeader>Monthly Ad Spend Budgets (AUD)</SectionHeader>
-            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
               {metaEnabled && (
                 <div>
                   <Label>Meta Monthly Budget</Label>
@@ -658,7 +663,7 @@ export default function ClientOnboardingForm() {
             </div>
 
             <SectionHeader>Performance Managers (per platform)</SectionHeader>
-            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
               {metaEnabled && (
                 <div>
                   <Label>Meta Performance Manager</Label>
