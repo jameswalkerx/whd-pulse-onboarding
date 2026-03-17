@@ -40,7 +40,7 @@ function slugify(name) {
 
 function Label({ children, sub }) {
   return (
-    <label className="block" style={{ marginBottom: 6 }}>
+    <label className="block" style={{ marginBottom: 10 }}>
       <span style={{ color: "#e0e0e0", fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase" }}>
         {children}
       </span>
@@ -244,7 +244,6 @@ export default function ClientOnboardingForm() {
   const [ga4PropertyId, setGa4PropertyId] = useState("");
   const [shopifyDomain, setShopifyDomain] = useState("");
   const [facebookPageId, setFacebookPageId] = useState("");
-  const [facebookPageName, setFacebookPageName] = useState("");
   const [instagramAccountId, setInstagramAccountId] = useState("");
   const [fbPageId, setFbPageId] = useState("");
   const [fbPageName, setFbPageName] = useState("");
@@ -315,7 +314,6 @@ export default function ClientOnboardingForm() {
       ga4_property_id: ga4PropertyId,
       shopify_store_domain: shopifyDomain,
       facebook_page_id: facebookPageId,
-      facebook_page_name: facebookPageName,
       instagram_account_id: instagramAccountId,
       budgets: {
         ...(metaEnabled && { meta: parseFloat(metaBudget) || 0 }),
@@ -489,7 +487,7 @@ export default function ClientOnboardingForm() {
                 </div>
                 <div>
                   <Label>Recurring Invoice Date</Label>
-                  <Input type="number" value={invoiceDate} onChange={setInvoiceDate} placeholder="Day of month (1-28)" />
+                  <Input type="number" value={invoiceDate} onChange={setInvoiceDate} placeholder="Day of month (1-31)" />
                 </div>
               </FieldRow>
             </div>
@@ -555,10 +553,6 @@ export default function ClientOnboardingForm() {
               <div>
                 <Label sub="From Facebook Page > About > Page ID">Facebook Page ID</Label>
                 <Input value={facebookPageId} onChange={setFacebookPageId} placeholder="e.g. 179020012222696" />
-              </div>
-              <div>
-                <Label>Facebook Page Name</Label>
-                <Input value={facebookPageName} onChange={setFacebookPageName} placeholder="e.g. Fair Dinkum Builds" />
               </div>
               <div>
                 <Label sub="From Instagram Professional Account settings">Instagram Account ID</Label>
@@ -771,7 +765,6 @@ export default function ClientOnboardingForm() {
                 ["GA4 Property ID", ga4PropertyId],
                 isEcom && ["Shopify Domain", shopifyDomain],
                 ["Facebook Page ID", facebookPageId],
-                ["Facebook Page Name", facebookPageName],
                 ["Instagram Account ID", instagramAccountId],
               ].filter(Boolean)}
             />
